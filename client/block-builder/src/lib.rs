@@ -94,13 +94,6 @@ pub struct BuiltBlock<Block: BlockT> {
 	pub proof: Option<StorageProof>,
 }
 
-impl<Block: BlockT> BuiltBlock<Block> {
-	/// Convert into the inner values.
-	pub fn into_inner(self) -> (Block, StorageChanges<Block>, Option<StorageProof>) {
-		(self.block, self.storage_changes, self.proof)
-	}
-}
-
 /// Block builder provider
 pub trait BlockBuilderProvider<B, Block, RA>
 where
