@@ -55,6 +55,13 @@ pub enum RecordProof {
 	No,
 }
 
+impl RecordProof {
+	/// Returns if `Self` == `Yes`.
+	pub fn yes(&self) -> bool {
+		matches!(self, Self::Yes)
+	}
+}
+
 /// Will return [`RecordProof::No`] as default value.
 impl Default for RecordProof {
 	fn default() -> Self {
