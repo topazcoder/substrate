@@ -45,6 +45,20 @@ use sp_runtime::{
 	DigestItem,
 };
 use std::{fmt::Debug, marker::PhantomData, sync::Arc};
+
+/// check a header has been signed by the right key. If the slot is too far in the future, an error
+/// will be returned. If it's successful, returns the pre-header and the digest item
+/// containing the seal.
+///
+/// This digest item will always return `Some` when used with `as_aura_seal`.
+fn check_header<C, B: BlockT, P: Pair>(
+	client: &C,
+	slot_now: Slot,
+	header: B::Header,
+	hash: B::Hash,
+	authorities: &[AuthorityId<P>],
+	check_for_equivocation: CheckForEquivocation,
+) -> Result<CheckedHeader<B::Header, (Slot, DigestItem)>, Error<B>>
 where
 	P::Public: Codec,
 	P::Signature: Codec,
