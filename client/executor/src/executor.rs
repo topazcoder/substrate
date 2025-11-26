@@ -763,7 +763,6 @@ mod tests {
 		where
 			H: HostFunctions,
 		{
-			H::host_functions()
 		}
 
 		my_interface::HostFunctions::host_functions().iter().for_each(|function| {
