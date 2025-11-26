@@ -766,6 +766,13 @@ mod tests {
 			H::host_functions()
 		}
 
+		my_interface::HostFunctions::host_functions().iter().for_each(|function| {
+			assert_eq!(
+				extract_host_functions(&executor.wasm).iter().filter(|f| f == &function).count(),
+				2
+			);
+		});
+
 		my_interface::say_hello_world("hey");
 	}
 }
